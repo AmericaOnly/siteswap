@@ -35,7 +35,7 @@ jobs:
       - name: Build site
         run: npm run build
         env:
-          VITE_ZEROX_API_KEY: ${{ secrets.VITE_ZEROX_API_KEY }}
+          VITE_ZEROX_PROXY_URL: https://electrumx-verge.cloud/widget/
 
       - name: Setup Pages
         uses: actions/configure-pages@v6
