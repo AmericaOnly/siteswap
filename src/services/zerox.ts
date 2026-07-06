@@ -164,7 +164,14 @@ async function request<T>(path: string, params: Record<string, QueryValue>) {
     response.headers.get("cf-ray");
 
   const responseText = await response.text();
-  let payload: T | { reason?: string; validationErrors?: Array<{ reason?: string }> };
+  let payload: T | {
+    code?: string;
+    error?: string;
+    message?: string;
+    reason?: string;
+    requestId?: string;
+    validationErrors?: Array<{ field?: string; message?: string; reason?: string }>;
+  };
 
   try {
     payload = JSON.parse(responseText) as T;
@@ -176,15 +183,27 @@ async function request<T>(path: string, params: Record<string, QueryValue>) {
 
   if (!response.ok) {
     const typedPayload = payload as {
+      code?: string;
+      error?: string;
+      message?: string;
       reason?: string;
-      validationErrors?: Array<{ reason?: string }>;
+      requestId?: string;
+      validationErrors?: Array<{ field?: string; message?: string; reason?: string }>;
     };
+    const validationMessage = typedPayload.validationErrors
+      ?.map((error) => [error.field, error.reason || error.message].filter(Boolean).join(": "))
+      .filter(Boolean)
+      .join("; ");
     const message =
       typedPayload.reason ||
-      typedPayload.validationErrors?.[0]?.reason ||
+      typedPayload.message ||
+      typedPayload.error ||
+      validationMessage ||
+      typedPayload.code ||
       `Request failed with status ${response.status}`;
+    const resolvedRequestId = requestId ?? typedPayload.requestId ?? "n/a";
 
-    throw new Error(`${message}. request-id: ${requestId ?? "n/a"}`);
+    throw new Error(`${message}. request-id: ${resolvedRequestId}`);
   }
 
   return {
@@ -194,17 +213,25 @@ async function request<T>(path: string, params: Record<string, QueryValue>) {
 }
 
 export async function getQuote(params: QuoteParams) {
+  const swapFeeBps = params.swapFeeBps ?? ZEROX_FEE_CONFIGURATION?.feeBps;
+  const swapFeeRecipient =
+    params.swapFeeRecipient ?? ZEROX_FEE_CONFIGURATION?.feeRecipient;
+  const swapFeeToken =
+    params.swapFeeToken ?? ZEROX_FEE_CONFIGURATION?.feeToken;
+  const feeParams =
+    swapFeeBps && swapFeeRecipient
+      ? {
+          swapFeeBps,
+          swapFeeRecipient,
+          swapFeeToken: swapFeeToken ?? params.sellToken
+        }
+      : {};
+
   const response = await request<ZeroExQuote>(
     isProxyMode ? "/api/quote" : "/swap/allowance-holder/quote",
     {
-    ...params,
-    swapFeeBps: params.swapFeeBps ?? ZEROX_FEE_CONFIGURATION?.feeBps,
-    swapFeeRecipient:
-      params.swapFeeRecipient ?? ZEROX_FEE_CONFIGURATION?.feeRecipient,
-    swapFeeToken:
-      params.swapFeeToken ??
-      ZEROX_FEE_CONFIGURATION?.feeToken ??
-      params.sellToken
+      ...params,
+      ...feeParams
     }
   );
 
