@@ -36,6 +36,9 @@ jobs:
         run: npm run build
         env:
           VITE_ZEROX_PROXY_URL: https://electrumx-verge.cloud/widget/
+          VITE_ZEROX_FEE_BPS: ${{ secrets.VITE_ZEROX_FEE_BPS || vars.VITE_ZEROX_FEE_BPS }}
+          VITE_ZEROX_FEE_RECIPIENT: ${{ secrets.VITE_ZEROX_FEE_RECIPIENT || vars.VITE_ZEROX_FEE_RECIPIENT }}
+          VITE_ZEROX_FEE_TOKEN: ${{ secrets.VITE_ZEROX_FEE_TOKEN || vars.VITE_ZEROX_FEE_TOKEN }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v6
