@@ -71,7 +71,6 @@ const MIN_NATIVE_GAS_RESERVE: Record<number, bigint> = {
 };
 const INPUT_TOKEN_OPTIONS = ETHEREUM_TOKENS.filter(
   (token) =>
-    (token.chainId === 8453 && token.address.toLowerCase() === NATIVE_TOKEN_ADDRESS) ||
     (token.chainId === 8453 &&
       token.address.toLowerCase() ===
         getAddress("0x833589fCD6EDb6E08f4c7C32D4f71b54bdA02913").toLowerCase())
