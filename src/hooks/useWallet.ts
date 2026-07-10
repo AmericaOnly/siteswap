@@ -206,7 +206,7 @@ export function useWallet() {
       source: "eip6963" | "legacy",
       info?: EIP6963ProviderInfo
     ) => {
-      const walletId = identifyWallet(provider, info);
+      const walletId = identifyWallet(provider, info) ?? (source === "legacy" ? "metamask" : null);
 
       if (!walletId) {
         return;
