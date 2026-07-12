@@ -69,11 +69,15 @@ const MIN_NATIVE_GAS_RESERVE: Record<number, bigint> = {
   1: 750_000_000_000_000n,
   8453: 80_000_000_000_000n
 };
+const INPUT_TOKEN_ADDRESSES = new Set([
+  NATIVE_TOKEN_ADDRESS,
+  getAddress("0x833589fCD6EDb6E08f4c7C32D4f71b54bdA02913").toLowerCase(),
+  getAddress("0xfde4C96c8593536E31F229EA8f37b2ADa2699bb2").toLowerCase()
+]);
 const INPUT_TOKEN_OPTIONS = ETHEREUM_TOKENS.filter(
   (token) =>
-    (token.chainId === 8453 &&
-      token.address.toLowerCase() ===
-        getAddress("0x833589fCD6EDb6E08f4c7C32D4f71b54bdA02913").toLowerCase())
+    token.chainId === 8453 &&
+    INPUT_TOKEN_ADDRESSES.has(token.address.toLowerCase())
 );
 const OUTPUT_TOKEN_OPTIONS = ETHEREUM_TOKENS.filter((token) => token.symbol === "TAOT");
 const SWAP_PROGRESS: Record<SwapStage, number> = {

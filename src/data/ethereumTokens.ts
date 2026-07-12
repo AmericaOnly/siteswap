@@ -46,6 +46,13 @@ export const ETHEREUM_TOKENS: TokenOption[] = [
     symbol: "USDC"
   },
   {
+    address: "0xfde4C96c8593536E31F229EA8f37b2ADa2699bb2",
+    chainId: 8453,
+    decimals: 6,
+    name: "USDT on Base",
+    symbol: "USDT"
+  },
+  {
     address: "0x6B175474E89094C44Da98b954EedeAC495271d0F",
     chainId: 1,
     decimals: 18,
