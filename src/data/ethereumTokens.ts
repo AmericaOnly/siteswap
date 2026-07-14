@@ -1,5 +1,10 @@
 import TAOT_LOGO_URI from "../../taot.png";
 
+const LINK_LOGO_DATA_URI =
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%232A5ADA'/%3E%3Cpath fill='none' stroke='%23fff' stroke-width='6' stroke-linejoin='round' d='M32 13 48 22v20L32 51 16 42V22z'/%3E%3C/svg%3E";
+const CBBTC_LOGO_DATA_URI =
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%23f7931a'/%3E%3Cpath fill='%23fff' d='M35.7 13.5l-1.1 4.4c4.5 1.1 7.4 3.6 6.7 7.6-.5 2.9-2.4 4.4-5 5 3.8 1.3 5.7 3.8 4.9 7.9-1 5.2-5.7 7.3-12.2 6.2l-1.1 4.5-2.7-.7 1.1-4.4-2.2-.6-1.1 4.4-2.7-.7 1.1-4.5-5.5-1.4 1.4-3.2 2.9.7c1.1.3 1.5-.3 1.7-.8l3.2-13c.1-.8-.2-1.5-1.8-1.9l-2.9-.7.8-3.2 5.6 1.4 1.1-4.4 2.7.7-1.1 4.3 2.2.6 1.1-4.4 2.9.7zm-6.6 19l-1.5 6.2c2.8.7 7 .9 7.6-1.9.7-2.9-3.4-3.7-6.1-4.3zm2.2-8.7l-1.4 5.6c2.4.6 5.9.7 6.5-1.8.6-2.5-2.8-3.2-5.1-3.8z'/%3E%3C/svg%3E";
+
 export type TokenOption = {
   address: string;
   chainId: number;
@@ -51,6 +56,22 @@ export const ETHEREUM_TOKENS: TokenOption[] = [
     decimals: 6,
     name: "USDT on Base",
     symbol: "USDT"
+  },
+  {
+    address: "0x88Fb150BDc53A65fe94Dea0c9BA0a6dAf8C6e196",
+    chainId: 8453,
+    decimals: 18,
+    logoURI: LINK_LOGO_DATA_URI,
+    name: "Chainlink on Base",
+    symbol: "LINK"
+  },
+  {
+    address: "0xcbB7C0000aB88B473b1f5aFd9ef808440eed33Bf",
+    chainId: 8453,
+    decimals: 8,
+    logoURI: CBBTC_LOGO_DATA_URI,
+    name: "Coinbase Wrapped BTC",
+    symbol: "cbBTC"
   },
   {
     address: "0x6B175474E89094C44Da98b954EedeAC495271d0F",

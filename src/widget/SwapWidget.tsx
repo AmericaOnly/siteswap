@@ -72,7 +72,9 @@ const MIN_NATIVE_GAS_RESERVE: Record<number, bigint> = {
 const INPUT_TOKEN_ADDRESSES = new Set([
   NATIVE_TOKEN_ADDRESS,
   getAddress("0x833589fCD6EDb6E08f4c7C32D4f71b54bdA02913").toLowerCase(),
-  getAddress("0xfde4C96c8593536E31F229EA8f37b2ADa2699bb2").toLowerCase()
+  getAddress("0xfde4C96c8593536E31F229EA8f37b2ADa2699bb2").toLowerCase(),
+  getAddress("0x88Fb150BDc53A65fe94Dea0c9BA0a6dAf8C6e196").toLowerCase(),
+  getAddress("0xcbB7C0000aB88B473b1f5aFd9ef808440eed33Bf").toLowerCase()
 ]);
 const INPUT_TOKEN_OPTIONS = ETHEREUM_TOKENS.filter(
   (token) =>
