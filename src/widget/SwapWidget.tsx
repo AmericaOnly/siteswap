@@ -74,7 +74,12 @@ const INPUT_TOKEN_ADDRESSES = new Set([
   getAddress("0x833589fCD6EDb6E08f4c7C32D4f71b54bdA02913").toLowerCase(),
   getAddress("0xfde4C96c8593536E31F229EA8f37b2ADa2699bb2").toLowerCase(),
   getAddress("0x88Fb150BDc53A65fe94Dea0c9BA0a6dAf8C6e196").toLowerCase(),
-  getAddress("0xcbB7C0000aB88B473b1f5aFd9ef808440eed33Bf").toLowerCase()
+  getAddress("0xcbB7C0000aB88B473b1f5aFd9ef808440eed33Bf").toLowerCase(),
+  getAddress("0xBAa5CC21fd487B8Fcc2F632f3F4E8D37262a0842").toLowerCase(),
+  getAddress("0x940181a94A35A4569E4529A3CDfB74e38FD98631").toLowerCase(),
+  getAddress("0x0b3e328455c4059EEb9e3f84b5543F74E24e7E1b").toLowerCase(),
+  getAddress("0x688aee022AA544f150678B8E5720b6b96a9E9a2F").toLowerCase(),
+  getAddress("0x6985884C4392D348587B19cb9eAAf157F13271cd").toLowerCase()
 ]);
 const INPUT_TOKEN_OPTIONS = ETHEREUM_TOKENS.filter(
   (token) =>
